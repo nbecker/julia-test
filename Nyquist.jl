@@ -4,13 +4,14 @@ export FNyquistPulse, RNyquistPulse
 
 eps = 1.0e-7
 
-type FNyquistPulse
-    alpha
-    scale
-    deltaT
-    T
-    FNyquistPulse(alpha, scale=1.0, deltaT=0.0, T=1.0) = new(alpha, scale, deltaT, T)
+type FNyquistPulse{FLT<:AbstractFloat}
+    alpha::FLT
+    scale::FLT
+    deltaT::FLT
+    T::FLT
+    FNyquistPulse(alpha::FLT, scale::FLT=1.0, deltaT::FLT=0.0, T::FLT=1.0) = new(alpha, scale, deltaT, T)
 end
+FNyquistPulse{FLT<:AbstractFloat}(alpha::FLT, scale::FLT=1.0, deltaT::FLT=0.0, T::FLT=1.0) = FNyquistPulse{FLT}(alpha, scale, deltaT, T)
 
 function (p::FNyquistPulse)(t)
     t += p.deltaT
@@ -29,15 +30,17 @@ function (p::FNyquistPulse)(t)
 end
 
 
-type RNyquistPulse
-    alpha
-    scale
-    deltaT
-    T
+type RNyquistPulse{FLT<:AbstractFloat}
+    alpha::FLT
+    scale::FLT
+    deltaT::FLT
+    T::FLT
 
-    RNyquistPulse(alpha, scale=1, deltaT=0, T=1) = new(alpha, scale, deltaT, T)
+    RNyquistPulse(alpha::FLT, scale::FLT=1.0, deltaT::FLT=0.0, T::FLT=1.0) = new(alpha, scale, deltaT, T)
 
 end
+
+RNyquistPulse{FLT<:AbstractFloat}(alpha::FLT, scale::FLT=1.0, deltaT::FLT=0.0, T::FLT=1.0) = RNyquistPulse{FLT}(alpha, scale, deltaT, T)
 
 """
 RRC pulse response at time t
