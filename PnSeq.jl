@@ -8,7 +8,8 @@ type pnseq
     pnseq(width) = new(0, 0, width,~(-1<<width))
 end
 
-function(p::pnseq)(n,T=Int64)
+function (p::pnseq){T}(n, ::Type{T}=Int64)
+#    function(p::pnseq)(n,T=Int64)
     out = Array{T}(n)
     for i in eachindex(out)
         if p.count < p.width

@@ -14,7 +14,7 @@ end
 
 xfilt = FIRFilter(c, sps//1)
 rfilt = FIRFilter(c/sps, 1//sps)
-setphase!(rfilt, 3)
+setphase!(rfilt, sps-1)
 
 using Constellation
 using PnSeq
